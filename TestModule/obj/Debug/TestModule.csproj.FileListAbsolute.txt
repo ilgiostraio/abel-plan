@@ -1,0 +1,2 @@
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\TestModule\obj\Debug\TestModule.csprojAssemblyReference.cache
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\TestModule\obj\Debug\TestModule.csproj.CoreCompileInputs.cache

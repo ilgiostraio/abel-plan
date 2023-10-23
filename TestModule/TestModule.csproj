@@ -1,0 +1,125 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net462</TargetFrameworks>
+		<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+		<OutputType>Library</OutputType>
+		<NoWarn>168;219;1701;1702;1705</NoWarn>
+		<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+		<RootNamespace>TestModule</RootNamespace>
+		<AssemblyName>TestModule</AssemblyName>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net462|AnyCPU'">
+		<OutputPath>..\..\PLAN\bin\Debug</OutputPath>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Prefer32Bit>true</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net462|AnyCPU'">
+		<OutputPath>..\..\PLAN\bin\Release</OutputPath>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+
+		<Reference Include="CLIPSNet">
+		  <HintPath>..\lib\CLIPSNet.dll</HintPath>
+		</Reference>
+
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Xml" />
+		<Reference Include="YarpCS">
+		  <HintPath>..\bin\Debug\net462\Modules\AttentionModule\YarpCS.dll</HintPath>
+		</Reference>
+		<Reference Include="YarpManagerCS">
+		  <HintPath>..\bin\Debug\net462\Modules\AttentionModule\YarpManagerCS.dll</HintPath>
+		</Reference>
+
+
+	
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\InteractiveCLIPS\InteractiveCLIPS.csproj" />
+	</ItemGroup>
+
+
+
+
+
+
+
+
+
+</Project>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C28E8209-7904-4D6B-A746-36E217C1BC81}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestModule</RootNamespace>
+    <AssemblyName>TestModule</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\Debug\Modules\TestModule\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CLIPSNet">
+      <HintPath>..\..\..\bin\Debug\lib\CLIPSNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InteractiveCLIPS">
+      <HintPath>..\..\..\bin\Debug\InteractiveCLIPS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  --><!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  --><!--
+</Project>-->

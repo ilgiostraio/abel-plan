@@ -1,0 +1,17 @@
+﻿(require "AttentionModule")
+(reset)
+#(open experiment_data.txt mydata "a")
+#(close)
+(facts)
+-----------
+(fun_makeexp 0.0 0.0)                 neutral
+(fun_makeexp 0.9 0.6)                 happy
+(fun_makeexp -0.5 -0.5)               sad
+(fun_makeexp -0.6 0.35)               disgust
+(fun_makeexp 0.7 0.4)                 love
+(fun_makeexp -0.5 0.6)                angry
+(fun_makeexp -0.23 0.73)              fear
+(fun_makeexp 0.1 0.55)                surprise
+(fun_lookat 1 0.5 0.1 5)
+(fun_speech 10)
+(fun_makepost neutral_high)

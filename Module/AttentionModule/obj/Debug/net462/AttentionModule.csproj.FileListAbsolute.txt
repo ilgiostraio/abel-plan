@@ -1,0 +1,16 @@
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\Modules\net462\init.clp
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\Modules\net462\AttentionModule.dll
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\Modules\net462\AttentionModule.pdb
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.AssemblyInfoInputs.cache
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.AssemblyInfo.cs
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.csproj.CoreCompileInputs.cache
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.csproj.CopyComplete
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.dll
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.pdb
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\(TargetFramework)\Modules\net462\init.clp
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\(TargetFramework)\Modules\net462\AttentionModule.dll
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\(TargetFramework)\Modules\net462\AttentionModule.pdb
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\AttentionModule\obj\Debug\net462\AttentionModule.csprojAssemblyReference.cache
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\net462\Modules\AttentionModule\net462\init.clp
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\net462\Modules\AttentionModule\net462\AttentionModule.dll
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\bin\Debug\net462\Modules\AttentionModule\net462\AttentionModule.pdb

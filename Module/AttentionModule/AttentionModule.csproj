@@ -1,0 +1,174 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net462</TargetFrameworks>
+		<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
+		<OutputType>Library</OutputType>
+		<NoWarn>168;219;1701;1702;1705</NoWarn>
+		<RootNamespace>AttentionModule</RootNamespace>
+		<AssemblyName>AttentionModule</AssemblyName>
+		<AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\..\..\PLAN\bin\Debug\$(TargetFramework)\Modules\AttentionModule\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\..\..\PLAN\bin\Release\$(TargetFramework)\Modules\AttentionModule\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+
+		<Reference Include="CLIPSNet">
+			<HintPath>..\..\lib\CLIPSNet.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+
+		<Reference Include="ComUtils">
+		  <HintPath>..\..\ComUtils.dll</HintPath>
+		  <Private>true</Private>
+		</Reference>
+
+		<Reference Include="ICSharpCode.AvalonEdit">
+			<HintPath>..\..\lib\ICSharpCode.AvalonEdit.dll</HintPath>
+			<Private>false</Private>
+
+		</Reference>
+
+		<Reference Include="InteractiveCLIPS">
+		  <HintPath>..\..\bin\Debug\net462\InteractiveCLIPS.dll</HintPath>
+			<Private>false</Private>
+
+		</Reference>
+
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="Sense.Lib.FACELibrary">
+		  <HintPath>..\..\Sense.Lib.FACELibrary.dll</HintPath>
+		</Reference>
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Xaml" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Xml" />
+		<Reference Include="WindowsBase" />
+	
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="YarpCS">
+		  <HintPath>..\..\bin\Debug\net462\Modules\AttentionModule\YarpCS.dll</HintPath>
+		</Reference>
+		<Reference Include="YarpManagerCS">
+		  <HintPath>..\..\bin\Debug\net462\Modules\AttentionModule\YarpManagerCS.dll</HintPath>
+		</Reference>
+
+	
+
+	</ItemGroup>
+
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec Command="xcopy &quot;$(SolutionDir)yarp.dll&quot; &quot;$(OutDir)&quot; /D /Y&#xD;&#xA;xcopy &quot;$(SolutionDir)lib&quot; &quot;$(OutDir)&quot; /D /Y&#xD;&#xA;xcopy &quot;$(SolutionDir)Module\AttentionModule\init.clp&quot; &quot;$(OutDir)&quot; /D /Y" />
+	</Target>
+	
+
+
+
+
+
+
+
+</Project>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A226482D-BCAC-4C44-B9D8-B9212621C496}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AttentionModule</RootNamespace>
+    <AssemblyName>AttentionModule</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\Debug\Modules\AttentionModule\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CLIPSNet">
+      <HintPath>..\..\..\bin\Debug\CLIPSNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ComUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Debug\ComUtils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FACELibrary">
+      <HintPath>..\..\..\bin\Debug\FACELibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="InteractiveCLIPS">
+      <HintPath>..\..\..\bin\Debug\InteractiveCLIPS.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="YarpCS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Debug\lib\YarpCS.dll</HintPath>
+    </Reference>
+    <Reference Include="YarpManagerCS">
+      <HintPath>..\..\..\bin\Debug\YarpManagerCS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttentionModuleDef.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="init.clp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  --><!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  --><!--
+</Project>-->

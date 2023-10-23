@@ -1,0 +1,13 @@
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\TestModule\obj\Debug\net462\TestModule.csprojAssemblyReference.cache
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\TestModule\obj\Debug\net462\TestModule.AssemblyInfoInputs.cache
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\TestModule\obj\Debug\net462\TestModule.AssemblyInfo.cs
+F:\Git_repo\FACETeamProject\NewArchitecture\PLAN\InteractiveCLIPS\TestModule\obj\Debug\net462\TestModule.csproj.CoreCompileInputs.cache
+F:\Git_repo\Abel\PLAN\TestModule\obj\Debug\net462\TestModule.csprojAssemblyReference.cache
+F:\Git_repo\Abel\PLAN\TestModule\obj\Debug\net462\TestModule.AssemblyInfoInputs.cache
+F:\Git_repo\Abel\PLAN\TestModule\obj\Debug\net462\TestModule.AssemblyInfo.cs
+F:\Git_repo\Abel\PLAN\TestModule\obj\Debug\net462\TestModule.csproj.CoreCompileInputs.cache
+C:\Users\FACETeam\Documents\GitRepo\PLAN\TestModule\obj\Debug\net462\TestModule.csproj.AssemblyReference.cache
+C:\Users\FACETeam\Documents\GitRepo\PLAN\TestModule\obj\Debug\net462\TestModule.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\FACETeam\Documents\GitRepo\PLAN\TestModule\obj\Debug\net462\TestModule.AssemblyInfoInputs.cache
+C:\Users\FACETeam\Documents\GitRepo\PLAN\TestModule\obj\Debug\net462\TestModule.AssemblyInfo.cs
+C:\Users\FACETeam\Documents\GitRepo\PLAN\TestModule\obj\Debug\net462\TestModule.csproj.CoreCompileInputs.cache

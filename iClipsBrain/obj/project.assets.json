@@ -1,0 +1,102 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "Unnoficial.Microsoft.Expression.Drawing/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.Expression.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.Expression.Drawing.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win10-x64": {
+      "Unnoficial.Microsoft.Expression.Drawing/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/Microsoft.Expression.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/Microsoft.Expression.Drawing.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Unnoficial.Microsoft.Expression.Drawing/1.0.0": {
+      "sha512": "oCrZ3DZg3TnhU4aKRtfPEIwsnqsBW0athv+5L0t+ti+ajibgGcwVgoLBRyQDHXAMxn68YKrhCQ766TXg+pVvgg==",
+      "type": "package",
+      "path": "unnoficial.microsoft.expression.drawing/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Microsoft.Expression.Drawing.dll",
+        "lib/Microsoft.Expression.Drawing.xml",
+        "unnoficial.microsoft.expression.drawing.1.0.0.nupkg.sha512",
+        "unnoficial.microsoft.expression.drawing.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "Unnoficial.Microsoft.Expression.Drawing >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\FACETeam\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.2.2",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\PLAN\\iClipsBrain\\iClipsBrain.csproj",
+      "projectName": "iClipsBrain",
+      "projectPath": "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\PLAN\\iClipsBrain\\iClipsBrain.csproj",
+      "packagesPath": "C:\\Users\\FACETeam\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\PLAN\\iClipsBrain\\obj\\",
+      "projectStyle": "PackageReference",
+      "crossTargeting": true,
+      "configFilePaths": [
+        "C:\\Users\\FACETeam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\CommunicationSystem\\BridgeYarpROS": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "targetAlias": "net462",
+        "dependencies": {
+          "Unnoficial.Microsoft.Expression.Drawing": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win10-x64": {
+        "#import": []
+      }
+    }
+  }
+}

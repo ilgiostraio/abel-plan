@@ -1,0 +1,133 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="CLIPS" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Green" />
+	<Color name="String" foreground="Brown" />
+	
+	<!-- This is the main ruleset. -->
+	<RuleSet>
+		<Span color="Comment" begin=";" />
+		
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+			<RuleSet>
+				<!-- nested span for escape sequences -->
+				<Span begin="\\" end="." />
+			</RuleSet>
+		</Span>
+		
+		<Keywords fontWeight="bold" foreground="Blue">			
+			<Word>else</Word>
+			
+			<Word>active-duplicate-instance</Word>
+			<Word>active-initialize-instance</Word>
+			<Word>active-make-instance</Word>
+			<Word>active-message-duplicate-instance</Word>
+			<Word>active-message-modify-instance</Word>
+			<Word>active-modify-instance</Word>
+			<Word>any-instancep</Word>			
+			<Word>apropos</Word>
+			<Word>assert</Word>
+			<Word>agenda</Word>
+			<Word>batch</Word>
+			<Word>bind</Word>
+			<Word>bload</Word>
+			<Word>break</Word>
+			<Word>bsave</Word>
+			<Word>call-next-handler</Word>
+			<Word>call-next-method</Word>
+			<Word>call-specific-method</Word>
+			<Word>close</Word>
+			<Word>declare</Word>
+			
+			<Word>defclass</Word>
+			<Word>deffacts</Word>
+			<Word>deffunction</Word>
+			<Word>defgeneric</Word>
+			<Word>defglobal</Word>
+			<Word>definstances</Word>
+			<Word>defmessage-handler</Word>
+			<Word>defmethod</Word>
+			<Word>defmodule</Word>
+			<Word>defrule</Word>
+			<Word>deftemplate</Word>
+			
+			<Word>delayed-do-for-all-instances</Word>
+			<Word>do-for-all-instances</Word>
+			<Word>do-for-instance</Word>
+			<Word>duplicate</Word>
+			<Word>duplicate-instance</Word>
+			<Word>eval</Word>
+			<Word>expand$</Word>
+			<Word>export</Word>
+			<Word>exists</Word>
+			<Word>facts</Word>
+			<Word>fetch</Word>
+			<Word>find-all-instances</Word>
+			<Word>find-instance</Word>
+			<Word>focus</Word>
+			<Word>forall</Word>
+			<Word>format</Word>
+			<Word>if</Word>
+			<Word>import</Word>
+			<Word>initialize-instance</Word>
+			<Word>list-defmethods</Word>
+			<Word>list-deftemplates</Word>
+			<Word>load</Word>
+			<Word>loop-for-count</Word>
+			<Word>make-instance</Word>
+			<Word>message-duplicate-instance</Word>
+			<Word>message-modify-instance</Word>
+			<Word>modify</Word>
+			<Word>modify-instance</Word>
+			<Word>multislot</Word>
+			<Word>next-handlerp</Word>
+			<Word>next-methodp</Word>
+			<Word>object-pattern-match-delay</Word>
+			<Word>open</Word>
+			<Word>options</Word>
+			<Word>override-next-handler</Word>
+			<Word>override-next-method</Word>
+			<Word>ppdefrule</Word>
+			<Word>printout</Word>
+			<Word>progn</Word>
+			<Word>progn$</Word>
+			<Word>reset</Word>
+			<Word>require</Word>
+			<Word>retract</Word>
+			<Word>return</Word>
+			<Word>rules</Word>
+			<Word>run</Word>
+			<Word>save</Word>
+			<Word>set-strategy</Word>
+			<Word>single-slot</Word>
+			<Word>slot</Word>
+			<Word>switch</Word>
+			<Word>system</Word>
+			<Word>undeffacts</Word>
+			<Word>undefglobal</Word>
+			<Word>undeftemplate</Word>
+			<Word>undefrule</Word>
+			<Word>unwatch</Word>
+			<Word>watch</Word>
+			<Word>while</Word>
+			
+			
+			<!-- ... -->
+		</Keywords>
+		
+		<Keywords fontWeight="bold" fontStyle="italic" foreground="Red">
+			<Word>AvalonEdit</Word>
+		</Keywords>
+		
+		<!-- Digits -->
+		<Rule foreground="DarkBlue">
+            \b0[xX][0-9a-fA-F]+  # hex number
+        |    \b
+            (    \d+(\.[0-9]+)?   #number with optional floating point
+            |    \.[0-9]+         #or just starting with floating point
+            )
+            ([eE][+-]?[0-9]+)? # optional exponent
+        </Rule>
+	</RuleSet>
+</SyntaxDefinition>

@@ -1,0 +1,93 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "InteractiveCLIPS/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "compile": {
+          "bin/placeholder/InteractiveCLIPS.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InteractiveCLIPS.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win10-x64": {
+      "InteractiveCLIPS/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "compile": {
+          "bin/placeholder/InteractiveCLIPS.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InteractiveCLIPS.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "InteractiveCLIPS/1.0.0": {
+      "type": "project",
+      "path": "../InteractiveCLIPS/InteractiveCLIPS.csproj",
+      "msbuildProject": "../InteractiveCLIPS/InteractiveCLIPS.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "InteractiveCLIPS >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\FACETeam\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\FACETeam\\Documents\\GitRepo\\PLAN\\TestModule\\TestModule.csproj",
+      "projectName": "TestModule",
+      "projectPath": "C:\\Users\\FACETeam\\Documents\\GitRepo\\PLAN\\TestModule\\TestModule.csproj",
+      "packagesPath": "C:\\Users\\FACETeam\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FACETeam\\Documents\\GitRepo\\PLAN\\TestModule\\obj\\",
+      "projectStyle": "PackageReference",
+      "crossTargeting": true,
+      "configFilePaths": [
+        "C:\\Users\\FACETeam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "projectReferences": {
+            "C:\\Users\\FACETeam\\Documents\\GitRepo\\PLAN\\InteractiveCLIPS\\InteractiveCLIPS.csproj": {
+              "projectPath": "C:\\Users\\FACETeam\\Documents\\GitRepo\\PLAN\\InteractiveCLIPS\\InteractiveCLIPS.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "targetAlias": "net462",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win10-x64": {
+        "#import": []
+      }
+    }
+  }
+}

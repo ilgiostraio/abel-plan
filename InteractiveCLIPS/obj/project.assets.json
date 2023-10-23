@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {},
+    ".NETFramework,Version=v4.6.2/win10-x64": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": []
+  },
+  "packageFolders": {
+    "C:\\Users\\FACETeam\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\PLAN\\InteractiveCLIPS\\InteractiveCLIPS.csproj",
+      "projectName": "InteractiveCLIPS",
+      "projectPath": "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\PLAN\\InteractiveCLIPS\\InteractiveCLIPS.csproj",
+      "packagesPath": "C:\\Users\\FACETeam\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\PLAN\\InteractiveCLIPS\\obj\\",
+      "projectStyle": "PackageReference",
+      "crossTargeting": true,
+      "configFilePaths": [
+        "C:\\Users\\FACETeam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\FACETeam\\Documents\\GitHub\\ABEL_repository\\CommunicationSystem\\BridgeYarpROS": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "targetAlias": "net462",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win10-x64": {
+        "#import": []
+      }
+    }
+  }
+}

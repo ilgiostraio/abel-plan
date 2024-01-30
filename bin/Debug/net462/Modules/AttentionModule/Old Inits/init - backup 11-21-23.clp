@@ -13,17 +13,10 @@
 
 (defglobal ?*speaking_probability* = 0.0)
 
-(defglobal ?*sad-duration* = 0.15) 
-
 
 ;DEFINITION OF TEMPLATES
 
 ;--------------------------------------------------------------SUBJECT TEMPLATE
-
-(deftemplate counter "This is a counter object with creation timestamp"
-   (slot creation-time (default-dynamic (time)))
-   (slot value (type SYMBOL))
-   (slot diff (type NUMBER)(default 0)))
 
 (deftemplate MAIN::subject "These are subject's peculiar 
 							characteristics detected by the Robot"
@@ -110,7 +103,6 @@
 (deftemplate MAIN::face "This is the robot emotional state template, containing its current mood and expression"
    (multislot mood (type NUMBER) (default 0.0 0.0))
    (multislot ecs (type NUMBER) (default 0.0 0.0))
-   (slot current_exp (type SYMBOL) (default NEUTRAL))
 )
 
 
@@ -390,7 +382,7 @@
    (bind ?x_appr (precision ?x 3))
    (bind ?y_appr (precision ?y 3))
    (bind ?z_appr (precision ?z 3))
-   ;(printout t "LOOK AT ( "?x_appr" , "?y_appr", "?z_appr" ) - ECS (" ?ev " | " ?ea ") - RULE [ "?rulefired" ] - WINNER ( " ?id " )" crlf) 
+   (printout t "LOOK AT ( "?x_appr" , "?y_appr", "?z_appr" ) - ECS (" ?ev " | " ?ea ") - RULE [ "?rulefired" ] - WINNER ( " ?id " )" crlf) 
    (fun_lookat ?id ?x_appr ?y_appr ?z_appr)
    (modify ?win (id 0)(point 0.0 0.0 0.0) (lookrule none))
    (modify ?face (ecs 0.0 0.0))
@@ -428,138 +420,96 @@
 (defrule MAIN::check-inizio-parlando
    (speak start)
    =>
-   (printout t "STO PARLANDO............" crlf)
+   (printout t "STO PARLANDO ............" crlf)
 )
 
 (defrule MAIN::check-fine-parlando
    (speak end)
    =>
-   (printout t "............HO DETTO TUTTO." crlf)
+   (printout t "............ HO DETTO TUTTO." crlf)
 )
 
-(defrule MAIN::same-exp-as-current "don't ask me to do the same expression I'm already making"
-   (declare (salience 10))
-   (face (current_exp ?exp))
-   ?remove <- (sentence-emotion-is ?exp)
-   =>
-   (retract ?remove)
-   )
-
 (defrule MAIN::check-JOY
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what JOY))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp JOY))
    (fun_makeexp 0.9 0.6)
 )
 
 (defrule MAIN::check-ANGER
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what ANGER))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp ANGER))
    (fun_makeexp -0.5 0.6)
 )
 
 (defrule MAIN::check-SURPRISE
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what SURPRISE))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp SURPRISE))
    (fun_makeexp 0.1 0.55)
 )
 
 (defrule MAIN::check-FEAR
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what FEAR))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
-   (modify ?face (current_exp FEAR))
    (retract ?remove)
    (fun_makeexp -0.23 0.73)
 )
 
 (defrule MAIN::check-LOVE
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what LOVE))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp LOVE))
    (fun_makeexp 0.7 0.4)
 )
 
+(defrule MAIN::check-SADNESS
+   ?remove <- (sentence-emotion-is ?what)
+   (test (eq ?what SADNESS))
+   =>
+   (printout t "sentence-emotion-is " ?what crlf)
+   (retract ?remove)
+   (fun_makeexp -0.5 -0.5)
+)
+
 (defrule MAIN::check-NEUTRAL
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what NEUTRAL))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
-   (modify ?face (current_exp NEUTRAL))
-   (fun_makeexp 0.0 0.0)
    (retract ?remove)
+   (fun_makeexp 0.0 0.0)
 )
 
 (defrule MAIN::check-DISGUST
-   ?face <- (face)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what DISGUST))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp DISGUST))
    (fun_makeexp -0.6 0.35)
 )
 
-(defrule MAIN::check-SADNESS-to-NEUTRAL
-   ?face <- (face)
-   ?remove <- (sentence-emotion-is ?what)
-   (test (eq ?what SADNESS))
+
+(defrule MAIN::check-NEUTRAL-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what NEUTRAL))
    =>
+   (printout t "sentence-pose-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp SADNESS))
-   (assert (counter (value sad-expression)))
-   (fun_makeexp 0.0 0.0)
+   (fun_posture "box3" 1)
 )
-
-(defrule MAIN::update-counter
-   ?c <- (counter (value sad-expression) (creation-time ?t1) (diff ?d))
-   (test (< (- ?d ?t1) ?*sad-duration*))
-   =>
-   (bind ?new_d (- (time) ?d))
-   (modify ?c (diff ?new_d))
-)
-
-(defrule MAIN::counter-expired-do-the-sad-face
-   ?c <- (counter (value sad-expression) (creation-time ?t1) (diff ?d))
-   ?face <- (face)
-   (test (>= (- ?d ?t1) ?*sad-duration*))
-   =>
-   (retract ?c)
-   (printout t "sentence-emotion-is SADNESS" crlf)
-   (fun_makeexp -0.5 -0.5)
-)
-
-
-;(defrule MAIN::check-NEUTRAL-POSE
-;   ?remove <- (sentence-pose-is ?what)
-;   (test (eq ?what NEUTRAL))
-;   =>
-;   (printout t "sentence-pose-is " ?what crlf)
-;   (retract ?remove)
-;   (fun_posture "box3" 1)
-;)
 
 
 (defrule MAIN::change-word-in-a-sentence

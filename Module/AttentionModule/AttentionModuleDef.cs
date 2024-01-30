@@ -483,6 +483,7 @@ namespace AttentionModule
             {
                 sentenceEmotionPort.receivedData(out receivedSentenceEmo);
                 AssertFact("sentence-emotion-is", receivedSentenceEmo);
+                System.Diagnostics.Debug.WriteLine("---------EMOZIONE CORRENTE: " + receivedSentenceEmo);
             }
         }
 

@@ -110,7 +110,7 @@ namespace iClipsBrain {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/iClipsBrain;component/moodshow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/iClipsBrain;V1.2.2.0;component/moodshow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MoodShow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

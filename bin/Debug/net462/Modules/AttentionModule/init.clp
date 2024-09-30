@@ -271,7 +271,7 @@
    ?check <- (winner_not_chosen)
    (tracking_is ON)
    (subject (idKinect ?id) (happiness_ratio ?ratio) (head ?x ?y ?z))
-   ?win <- (winner)
+   ?win <- (winner)          
    ?face <- (face)
    (test (> ?ratio 0.99))
    =>
@@ -390,7 +390,7 @@
    (bind ?x_appr (precision ?x 3))
    (bind ?y_appr (precision ?y 3))
    (bind ?z_appr (precision ?z 3))
-   ;(printout t "LOOK AT ( "?x_appr" , "?y_appr", "?z_appr" ) - ECS (" ?ev " | " ?ea ") - RULE [ "?rulefired" ] - WINNER ( " ?id " )" crlf) 
+   (printout t "LOOK AT ( "?x_appr" , "?y_appr", "?z_appr" ) - ECS (" ?ev " | " ?ea ") - RULE [ "?rulefired" ] - WINNER ( " ?id " )" crlf) 
    (fun_lookat ?id ?x_appr ?y_appr ?z_appr)
    (modify ?win (id 0)(point 0.0 0.0 0.0) (lookrule none))
    (modify ?face (ecs 0.0 0.0))
@@ -426,15 +426,39 @@
 )
 
 (defrule MAIN::check-inizio-parlando
+   (declare (salience 10))
    (speak start)
    =>
    (printout t "STO PARLANDO............" crlf)
 )
 
 (defrule MAIN::check-fine-parlando
+   (declare (salience 10))
    (speak end)
    =>
    (printout t "............HO DETTO TUTTO." crlf)
+)
+
+(defrule MAIN::change-word-in-a-sentence
+   ?remove <- (sentence-text-is ?what)
+   =>
+   (retract ?remove)
+   (assert (sentence-to-say-is ?what))
+)
+
+(defrule MAIN::send-changed-sentence
+   ?remove <- (sentence-to-say-is ?what)
+   =>
+   (fun_sentence_changed ?what)
+   (retract ?remove)
+)
+
+(defrule MAIN::check-64
+   ?remove <- (dai parla)
+   =>
+   (printout t "STO PER PARLARE" crlf)
+   (retract ?remove)
+   (fun_speech 0)
 )
 
 (defrule MAIN::same-exp-as-current "don't ask me to do the same expression I'm already making"
@@ -551,35 +575,88 @@
    (fun_makeexp -0.5 -0.5)
 )
 
+;--------------------------------------------------------EMOTIONAL POSTURE RULES
 
 ;(defrule MAIN::check-NEUTRAL-POSE
 ;   ?remove <- (sentence-pose-is ?what)
 ;   (test (eq ?what NEUTRAL))
 ;   =>
+;   (bind ?n (random 1 16)) ; Genera un numero casuale tra 1 e 15 (il limite superiore non è incluso)
+;   (bind ?neutral-name (str-cat "neutral_" ?n)) ; Concatenazione della stringa "neutral_" con il numero
 ;   (printout t "sentence-pose-is " ?what crlf)
 ;   (retract ?remove)
-;   (fun_posture "box3" 1)
+;   (fun_posture ?neutral-name 1) ; Passa il valore di ?neutral-name a fun_posture
 ;)
 
-
-(defrule MAIN::change-word-in-a-sentence
-   ?remove <- (sentence-text-is ?what)
+(defrule MAIN::check-NEUTRAL-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what NEUTRAL))
    =>
+   (printout t "sentence-pose-is " ?what crlf)
    (retract ?remove)
-   (assert (sentence-to-say-is ?what))
+   (fun_posture "neutral" 1)
 )
 
-(defrule MAIN::send-changed-sentence
-   ?remove <- (sentence-to-say-is ?what)
+(defrule MAIN::check-SFIDA-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what CHALLENGE))
    =>
-   (fun_sentence_changed ?what)
+   (printout t "sentence-pose-is " ?what crlf)
    (retract ?remove)
+   (fun_posture "maguardaquesto" 1)
 )
 
-(defrule MAIN::check-64
-   ?remove <- (dai parla-cazzo)
+(defrule MAIN::check-ESULTANZA-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what TRIUMPH))
    =>
-   (printout t "STO PER PARLARE" crlf)
+   (printout t "sentence-pose-is " ?what crlf)
    (retract ?remove)
-   (fun_speech 0)
+   (fun_posture "dab" 1)
 )
+
+(defrule MAIN::check-SPAVENTO-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what SCARED))
+   =>
+   (printout t "sentence-pose-is " ?what crlf)
+   (retract ?remove)
+   (fun_posture "fear" 1)
+)
+
+(defrule MAIN::check-BOH-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what BOH))
+   =>
+   (printout t "sentence-pose-is " ?what crlf)
+   (retract ?remove)
+   (fun_posture "boh" 1)
+)
+
+(defrule MAIN::check-SALUTO-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what GREETING))
+   =>
+   (printout t "sentence-pose-is " ?what crlf)
+   (retract ?remove)
+   (fun_posture "hello" 1)
+)
+
+(defrule MAIN::check-GIOIA-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what JOY))
+   =>
+   (printout t "sentence-pose-is " ?what crlf)
+   (retract ?remove)
+   (fun_posture "neutral_high" 1)
+)
+
+(defrule MAIN::check-TRISTE-POSE
+   ?remove <- (sentence-pose-is ?what)
+   (test (eq ?what SADNESS))
+   =>
+   (printout t "sentence-pose-is " ?what crlf)
+   (retract ?remove)
+   (fun_posture "box3" 1)
+)
+

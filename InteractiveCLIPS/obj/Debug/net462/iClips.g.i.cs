@@ -51,7 +51,7 @@ namespace InteractiveCLIPS {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/InteractiveCLIPS;component/iclips.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/InteractiveCLIPS;V1.0.0.0;component/iclips.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\iClips.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

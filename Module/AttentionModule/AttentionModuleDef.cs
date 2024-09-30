@@ -189,10 +189,10 @@ namespace AttentionModule
             sentenceAudioPort.openReceiver("/AbelServer/SentenceAudio:o", "/InteractiveCLIPS/SentenceAudio:i");
 
             sentenceEmotionPort = new YarpPort();
-            sentenceEmotionPort.openReceiver("/AbelServer/VoiceEmotion:o", "/InteractiveCLIPS/VoiceEmotion:i");
+            sentenceEmotionPort.openReceiver("/AbelV2/Emotion:o", "/InteractiveCLIPS/VoiceEmotion:i");
 
             sentencePosePort = new YarpPort();
-            sentencePosePort.openReceiver("/AbelServer/Pose:o", "/InteractiveCLIPS/Pose:i");
+            sentencePosePort.openReceiver("/AbelV2/Posture:o", "/InteractiveCLIPS/Pose:i");
 
             SceneReceiverPort = new YarpPort();
             SceneReceiverPort.openReceiver("/SceneAnalyzer/MetaSceneXML:o", "/InteractiveCLIPS/MetaSceneXML:i");
@@ -248,10 +248,10 @@ namespace AttentionModule
                         //The field of view for the color camera is 84.1 degrees horizontally and 53.8 degrees vertically.
                         //For the depth camera it's 70.6 degrees horizontally and 60 degrees vertically.
 
-                        Xmax = subject.head.Z * (float)Math.Tan(42.05 / 180.00 * Math.PI); //alzando l'angolo della tangente aumento l'eccentricità (42.05°)
+                        Xmax = subject.head.Z * (float)Math.Tan(42 / 180.00 * Math.PI); //alzando l'angolo della tangente aumento l'eccentricità (42.05°)
                         X = subject.head.X / Xmax / 2 + (float)0.5; //aggiustamento per rappresentazione grafica
 
-                        Ymax = subject.head.Z * (float)Math.Tan(26.9 / 180.00 * Math.PI); //alzando l'angolo della tangente aumento l'eccentricità (26.9°)
+                        Ymax = subject.head.Z * (float)Math.Tan(27 / 180.00 * Math.PI); //alzando l'angolo della tangente aumento l'eccentricità (26.9°)
                         Y = subject.head.Y / Ymax / 2 + (float)0.5; //aggiustamento per rappresentazione grafica
                         //Y_round = Math.Round(Y, 2);
 
@@ -523,7 +523,7 @@ namespace AttentionModule
                     //File.WriteAllText("C:\\Users\\FACETeam\\Desktop\\WriteText.txt", receivedSentenceAudio64);
                     byte[] data = Convert.FromBase64String(receivedSentenceAudio64);
                     File.WriteAllBytes("C:\\Users\\FACETeam\\Documents\\GitRepo\\Speech\\audio\\0.wav", data);
-                    AssertFact("dai", "parla-cazzo");
+                    AssertFact("dai", "parla");
                         
                 }
             }

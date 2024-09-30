@@ -14,4 +14,4 @@
 (fun_makeexp 0.1 0.55)                surprise
 (fun_lookat 1 0.5 0.1 5)
 (fun_speech 10)
-(fun_makepost neutral_high)
+(fun_posture "hello" 1)

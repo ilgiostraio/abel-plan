@@ -107,6 +107,8 @@ namespace AttentionModule
 
         bool close = false;
 
+        //Mutex pose_mut;
+
         protected override void Init()
         {
             uf_lookat = new CLIPSNet.UserFunction(ClipsEnv, new lookAtDelegate(FunLookAt), "fun_lookat");
@@ -133,6 +135,7 @@ namespace AttentionModule
             //ThreadPool.QueueUserWorkItem(receiveSentenceText_Elapsed);
 
 
+            //pose_mut = new Mutex();
 
 
             WinnerSub = new Winner();
@@ -213,7 +216,7 @@ namespace AttentionModule
 
             }
 
-            if (sentenceAudioPort.PortExists("/AbelServer/SentenceAudio:o")) 
+            if (sentenceAudioPort.PortExists("/AbelV2/Emotion:o")) 
             {
                 ClipsEnv.PrintRouter("RouterTest", "Connection with Sentence AUDIO created! \n");
                 System.Diagnostics.Debug.WriteLine("");
@@ -224,7 +227,7 @@ namespace AttentionModule
             else
             {
 
-                ClipsEnv.PrintRouter("RouterTest", "Connection NOT created! /AbelServer/SentenceAudio:o port do not exist! \n");
+                ClipsEnv.PrintRouter("RouterTest", "Connection NOT created! /AbelV2/Emotion:o port do not exist! \n");
 
             }
 
@@ -382,9 +385,10 @@ namespace AttentionModule
         [ClipsAction("fun_posture")]
         public CLIPSNet.DataTypes.Integer FunPosture(CLIPSNet.DataTypes.String posture, CLIPSNet.DataTypes.Integer duration)
         {
+            //pose_mut.WaitOne();
             if (!close)
-                posturePort.sendData(Convert.ToString(posture));   
-
+                posturePort.sendData(Convert.ToString(posture));
+            //pose_mut.ReleaseMutex();
             return new CLIPSNet.DataTypes.Integer(1000);
         }
 
@@ -491,7 +495,7 @@ namespace AttentionModule
         {
 
             while (!close)
-            {
+            {   
                 sentencePosePort.receivedData(out receivedSentencePose);
                 AssertFact("sentence-pose-is", receivedSentencePose);
             }

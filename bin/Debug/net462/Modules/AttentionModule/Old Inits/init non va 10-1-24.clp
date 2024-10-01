@@ -14,6 +14,8 @@
 (defglobal ?*speaking_probability* = 0.0)
 
 (defglobal ?*sad-duration* = 0.15) 
+(defglobal ?*face-back-to-neutral* = 20) 
+(defglobal ?*post-back-to-neutral* = 5) 
 
 
 ;DEFINITION OF TEMPLATES
@@ -22,7 +24,7 @@
 
 (deftemplate counter "This is a counter object with creation timestamp"
    (slot creation-time (default-dynamic (time)))
-   (slot value (type SYMBOL))
+   (slot name (type SYMBOL))
    (slot diff (type NUMBER)(default 0)))
 
 (deftemplate MAIN::subject "These are subject's peculiar 
@@ -107,10 +109,12 @@
 )
 
 
-(deftemplate MAIN::face "This is the robot emotional state template, containing its current mood and expression"
+(deftemplate MAIN::abel "This is the robot emotional state template, containing its current mood and expression"
    (multislot mood (type NUMBER) (default 0.0 0.0))
    (multislot ecs (type NUMBER) (default 0.0 0.0))
    (slot current_exp (type SYMBOL) (default NEUTRAL))
+   (slot current_post (type SYMBOL) (default NEUTRAL))
+   (slot exp_safety_check (type SYMBOL) (default YES))
 )
 
 
@@ -195,7 +199,7 @@
 (deffacts MAIN::initialization "Just to initialize some useful facts" 
    (winner)
    (winner_not_chosen)
-   (face)
+   (abel)
    (tracking_is OFF)
    (max_sm)
 )
@@ -235,13 +239,13 @@
    (tracking_is OFF)
    ?surround <- (surroundings (saliency ?x ?y ?) (resolution ?w ?h))
    ?win <- (winner) 
-   ?face <- (face (mood ?v ?a))
+   ?abel <- (abel (mood ?v ?a))
    =>
    (bind ?nx (/ ?x ?w))
    (bind ?ny (- 0.6 (/ ?y ?h)))
    (bind ?newv (flatmood ?v))
    (bind ?newa (flatmood ?a))
-   (modify ?face (mood ?newv ?newa))
+   (modify ?abel (mood ?newv ?newa))
    (modify ?win (id 1) (point ?nx ?ny 100) (lookrule LONELINESS))
    (retract ?surround ?check)
    (assert (winner_is_chosen))
@@ -272,12 +276,12 @@
    (tracking_is ON)
    (subject (idKinect ?id) (happiness_ratio ?ratio) (head ?x ?y ?z))
    ?win <- (winner)          
-   ?face <- (face)
+   ?abel <- (abel)
    (test (> ?ratio 0.99))
    =>
    (bind ?x_cal (calib_x ?x ?z))
    (bind ?y_cal (calib_y ?y ?z))
-   (modify ?face (ecs 0.80 0.50))
+   (modify ?abel (ecs 0.80 0.50))
    (modify ?win (id ?id) (point ?x_cal ?y_cal ?z) (lookrule HAPPY))
    (retract ?check) 
    (assert (winner_is_chosen))
@@ -384,7 +388,7 @@
 
 (defrule MAIN::look_at_winner "Finally, this rule makes the robot look at the winner making the expression that is the most suitable to the current social context"
    ?check <- (winner_is_chosen)
-   ?face <- (face (ecs ?ev ?ea))
+   ?abel <- (abel (ecs ?ev ?ea))
    ?win <- (winner (id ?id) (point ?x ?y ?z) (lookrule ?rulefired))
    =>
    (bind ?x_appr (precision ?x 3))
@@ -393,7 +397,7 @@
    (printout t "LOOK AT ( "?x_appr" , "?y_appr", "?z_appr" ) - ECS (" ?ev " | " ?ea ") - RULE [ "?rulefired" ] - WINNER ( " ?id " )" crlf) 
    (fun_lookat ?id ?x_appr ?y_appr ?z_appr)
    (modify ?win (id 0)(point 0.0 0.0 0.0) (lookrule none))
-   (modify ?face (ecs 0.0 0.0))
+   (modify ?abel (ecs 0.0 0.0))
    (assert (delete subjects))
    (retract ?check)
 )
@@ -463,116 +467,143 @@
 
 (defrule MAIN::same-exp-as-current "don't ask me to do the same expression I'm already making"
    (declare (salience 10))
-   (face (current_exp ?exp))
+   (abel (current_exp ?exp))
    ?remove <- (sentence-emotion-is ?exp)
    =>
    (retract ?remove)
    )
 
 (defrule MAIN::check-JOY
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what JOY))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp JOY))
+   (modify ?abel (current_exp JOY))
    (fun_makeexp 0.9 0.6)
 )
 
 (defrule MAIN::check-ANGER
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what ANGER))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp ANGER))
+   (modify ?abel (current_exp ANGER))
    (fun_makeexp -0.5 0.6)
 )
 
 (defrule MAIN::check-SURPRISE
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what SURPRISE))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp SURPRISE))
+   (modify ?abel (current_exp SURPRISE))
    (fun_makeexp 0.1 0.55)
 )
 
 (defrule MAIN::check-FEAR
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what FEAR))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
-   (modify ?face (current_exp FEAR))
+   (modify ?abel (current_exp FEAR))
    (retract ?remove)
    (fun_makeexp -0.23 0.73)
 )
 
 (defrule MAIN::check-LOVE
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what LOVE))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp LOVE))
+   (modify ?abel (current_exp LOVE))
    (fun_makeexp 0.7 0.4)
 )
 
 (defrule MAIN::check-NEUTRAL
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what NEUTRAL))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
-   (modify ?face (current_exp NEUTRAL))
+   (modify ?abel (current_exp NEUTRAL))
    (fun_makeexp 0.0 0.0)
    (retract ?remove)
 )
 
 (defrule MAIN::check-DISGUST
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what DISGUST))
    =>
    (printout t "sentence-emotion-is " ?what crlf)
    (retract ?remove)
-   (modify ?face (current_exp DISGUST))
+   (modify ?abel (current_exp DISGUST))
    (fun_makeexp -0.6 0.35)
 )
 
 (defrule MAIN::check-SADNESS-to-NEUTRAL
-   ?face <- (face)
+   ?abel <- (abel)
    ?remove <- (sentence-emotion-is ?what)
    (test (eq ?what SADNESS))
    =>
    (retract ?remove)
-   (modify ?face (current_exp SADNESS))
-   (assert (counter (value sad-expression)))
+   (modify ?abel (current_exp SADNESS))
+   (assert (counter (name sad-expression)))
    (fun_makeexp 0.0 0.0)
 )
 
-(defrule MAIN::update-counter
-   ?c <- (counter (value sad-expression) (creation-time ?t1) (diff ?d))
+(defrule MAIN::check-if-not-NEUTRAL
+   ?abel <- (abel (current_exp ?curr_exp) (exp_safety_check ?check))
+   (test (neq ?curr_exp NEUTRAL))
+   (test (eq ?check YES))
+   =>
+   (assert (counter (name back-to-neutral)))
+   (modify ?abel (exp_safety_check NO))
+)
+
+(defrule MAIN::update-counter-sadness
+   ?c <- (counter (name sad-expression) (creation-time ?t1) (diff ?d))
    (test (< (- ?d ?t1) ?*sad-duration*))
    =>
    (bind ?new_d (- (time) ?d))
    (modify ?c (diff ?new_d))
 )
 
+(defrule MAIN::update-counter-neutral
+   ?c <- (counter (name back-to-neutral) (creation-time ?t) (diff ?d))
+   (test (< (- ?d ?t) ?*face-back-to-neutral*))
+   =>
+   (bind ?new_d (- (time) ?d))
+   (modify ?c (diff ?new_d))
+)
+
 (defrule MAIN::counter-expired-do-the-sad-face
-   ?c <- (counter (value sad-expression) (creation-time ?t1) (diff ?d))
-   ?face <- (face)
+   ?c <- (counter (name sad-expression) (creation-time ?t1) (diff ?d))
    (test (>= (- ?d ?t1) ?*sad-duration*))
    =>
    (retract ?c)
    (printout t "sentence-emotion-is SADNESS" crlf)
    (fun_makeexp -0.5 -0.5)
+)
+
+(defrule MAIN::counter-expired-back-to-neutral-face
+   ?c <- (counter (name back-to-neutral) (creation-time ?t1) (diff ?d))
+   ?abel <- (abel (exp_safety_check NO))
+   (test (>= (- ?d ?t1) ?*face-back-to-neutral*))
+   =>
+   (retract ?c)
+   (printout t "SAFETY BACK TO NEUTRAL" crlf)
+   (modify ?abel (exp_safety_check YES))
+   (fun_makeexp 0.0 0.0)
 )
 
 ;--------------------------------------------------------EMOTIONAL POSTURE RULES
@@ -582,10 +613,10 @@
 ;   (test (eq ?what NEUTRAL))
 ;   =>
 ;   (bind ?n (random 1 16)) ; Genera un numero casuale tra 1 e 15 (il limite superiore non è incluso)
-;   (bind ?neutral-name (str-cat "neutral_" ?n)) ; Concatenazione della stringa "neutral_" con il numero
+;   (bind ?neutral-name (str-cat "neutral_" ?n)) ; 
 ;   (printout t "sentence-pose-is " ?what crlf)
 ;   (retract ?remove)
-;   (fun_posture ?neutral-name 1) ; Passa il valore di ?neutral-name a fun_posture
+;   (fun_posture ?neutral-name 1) 
 ;)
 
 (defrule MAIN::check-NEUTRALE-POSE
